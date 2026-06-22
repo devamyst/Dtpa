@@ -1,0 +1,172 @@
+sounds:
+  request_sent: "BLOCK_NOTE_BLOCK_PLING"
+  request_received: "ENTITY_EXPERIENCE_ORB_PICKUP"
+  request_accept: "ENTITY_EXPERIENCE_ORB_PICKUP"
+  request_deny: "BLOCK_NOTE_BLOCK_BASS"
+  teleport_success: "ENTITY_ENDERMAN_TELEPORT"
+  teleport_cancelled: "BLOCK_ANVIL_LAND"
+
+settings:
+  tpa_countdown: 3
+  expired_time: 30
+  teleport:
+    action_bar: true
+    title: true
+  format:
+    tpa: "TPA"
+    tpa_here: "TPAHere"
+
+  # ─── Cooldown ──────────────────────────────────────────────────────────────
+  cooldown:
+    enabled: true
+    # Cooldown in seconds before a player can send another request after
+    # their previous one is accepted, denied, or expires
+    seconds: 10
+    # Whether the cooldown applies per-target (true) or globally (false)
+    per_target: true
+    bypass_permission: "trickytpa.bypass.cooldown"
+
+  # ─── World Blacklist ───────────────────────────────────────────────────────
+  world_blacklist:
+    enabled: false
+    # Players in these worlds cannot SEND or RECEIVE TPA requests
+    worlds: []
+    bypass_permission: "trickytpa.bypass.world"
+
+  # ─── Max Requests ──────────────────────────────────────────────────────────
+  max_requests:
+    enabled: true
+    # Max pending outgoing requests a player can have at once
+    per_player: 5
+    bypass_permission: "trickytpa.bypass.maxrequests"
+
+  # ─── Distance Limit ────────────────────────────────────────────────────────
+  distance_limit:
+    enabled: false
+    # Maximum distance (in blocks) between sender and receiver for TPA
+    # Only checked for TPA (not TPAHere, since the sender comes to the receiver)
+    max_blocks: 1000
+    bypass_permission: "trickytpa.bypass.distance"
+
+  # ─── Damage Cancel ─────────────────────────────────────────────────────────
+  damage_cancel:
+    enabled: true
+    # Taking any damage cancels the teleport countdown
+    notify: true
+
+  # ─── ActionBar Task ────────────────────────────────────────────────────────
+  actionbar:
+    interval_ticks: 20
+
+messages:
+  player_not_found: "&cPlayer not found!"
+  enter_player: "&cPlease enter a player name."
+  usage_tpa: "&cUsage: /tpa <player>"
+  usage_tpahere: "&cUsage: /tpahere <player>"
+  cant_tpa_yourself: "&cYou can't send a request to yourself."
+  no_requests: "&cYou have no pending TPA requests from that player."
+  request_sent: "&aYou sent a &e{type} &arequest to &e{receiver}&a!"
+  request_received: "&e{sender} &ahas sent you a &e{type} &arequest!"
+  receiver_accept: "&aYou accepted the &e{type} &arequest!"
+  sender_notify_accept: "&aYour &e{type} &arequest was accepted!"
+  receiver_refuse: "&cYou denied the &e{type} &crequest."
+  sender_notify_refuse: "&cYour &e{type} &crequest was denied."
+  tpauto-actionbar: "&bTPAuto &7is active"
+  teleport:
+    messages:
+      cancelled: "&cTeleportation cancelled — you moved!"
+      cancelled_damage: "&cTeleportation cancelled — you took damage!"
+      success: "&aTeleportation complete!"
+      progress: "&eYou will be teleported in &b{time}s&e!"
+    action_bar:
+      progress: "&bTeleporting in &f{time}s"
+      cancel: "&cTeleportation cancelled!"
+      success: "&aTeleported!"
+    title:
+      progress_title: "&bTeleporting..."
+      progress_sub_title: "&f{time} seconds"
+      cancelled_title: "&cCancelled!"
+      cancelled_sub_title: "&fYou moved."
+      success_title: "&aTeleported!"
+      success_sub_title: ""
+  cooldown:
+    active: "&cYou must wait &e{time}s &cbefore sending another TPA request."
+  world_blacklist:
+    sender_blocked: "&cYou cannot send TPA requests from this world."
+    receiver_blocked: "&cThat player is in a world where TPA requests are disabled."
+    both_blocked: "&cTPA is disabled in your current world."
+  max_requests:
+    reached: "&cYou have reached the maximum number of pending TPA requests (&e{max}&c)."
+  distance:
+    too_far: "&cThat player is too far away (&e{distance}&c blocks, max &e{max}&c)."
+  admin:
+    no_permission: "&cYou don't have permission to use this command."
+    clear_all: "&aCleared &e{count} &apending TPA requests."
+    reload: "&aConfiguration reloaded."
+    player_not_found: "&cPlayer not found online."
+    request_not_found: "&cNo TPA request found between &e{sender} &cand &e{receiver}&c."
+    removed_request: "&aRemoved TPA request from &e{sender} &ato &e{receiver}&a."
+    info_header: "&8=== &6TPA Info: &e{player} &8==="
+    info_tpa_disabled: "&7  TPA Disabled: &e{value}"
+    info_tpahere_disabled: "&7  TPAHere Disabled: &e{value}"
+    info_auto_accept: "&7  Auto-Accept: &e{value}"
+    info_confirm_disabled: "&7  Confirm GUI Disabled: &e{value}"
+    info_pending_outgoing: "&7  Pending Outgoing: &e{count}"
+    info_pending_incoming: "&7  Pending Incoming: &e{count}"
+  list:
+    no_pending: "&cYou have no pending TPA requests."
+    header: "&8=== &6Your Pending TPA Requests &8==="
+    entry: "&7  &e#{index} &8- &7To: &e{target} &8(&7{type}&8)"
+    admin_header: "&8=== &6Pending TPA Requests for &e{player} &8==="
+    admin_entry: "&7  &e#{index} &8- &e{sender} &7-> &e{receiver} &8(&7{type}&8)"
+  blocklist:
+    already_blocked: "&cYou have already blocked &e{player}&c."
+    not_blocked: "&cYou have not blocked &e{player}&c."
+    blocked: "&aBlocked &e{player}&a. They can no longer send you TPA requests."
+    unblocked: "&aUnblocked &e{player}&a. They can now send you TPA requests."
+    blocked_attempt: "&cYou have been blocked by &e{player}&c."
+    list_header: "&8=== &6Your Blocked Players &8==="
+    list_entry: "&7  &e{player}"
+    list_empty: "&7You haven't blocked anyone."
+
+guis:
+  sent_confirm:
+    title: "&8Confirm TPA Request"
+    rows: 3
+    info:
+      slot: 13
+      display_name: "&e{receiver}"
+      lore: ["", "&7Send a teleport request to this player."]
+      glow: false
+    accept:
+      slot: 16
+      type: LIME_STAINED_GLASS_PANE
+      display_name: "&aConfirm"
+      lore: ["", "&7Click to send the request."]
+      glow: false
+    refuse:
+      slot: 10
+      type: RED_STAINED_GLASS_PANE
+      display_name: "&cCancel"
+      lore: ["", "&7Click to cancel."]
+      glow: false
+  accept_request:
+    title: "&8Incoming TPA Request"
+    rows: 3
+    info:
+      slot: 13
+      display_name: "&e{sender}"
+      lore: ["", "&7This player wants to teleport."]
+      glow: false
+    accept:
+      slot: 16
+      type: LIME_STAINED_GLASS_PANE
+      display_name: "&aAccept"
+      lore: ["", "&7Click to accept the request."]
+      glow: false
+    refuse:
+      slot: 10
+      type: RED_STAINED_GLASS_PANE
+      display_name: "&cDeny"
+      lore: ["", "&7Click to deny the request."]
+      glow: false

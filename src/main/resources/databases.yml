@@ -1,0 +1,30 @@
+# ─── TrickyTPA Database Configuration ─────────────────────────────────────────
+# Supported types: mysql, h2, sqlite
+# All data is persisted to the database.
+# For MySQL, active TPA requests are cached in RAM for faster access.
+
+type: sqlite
+
+# ─── SQLite ───────────────────────────────────────────────────────────────────
+# File is stored in the plugin data folder as 'trickytpa.db'.
+sqlite:
+  filename: trickytpa.db
+
+# ─── H2 ───────────────────────────────────────────────────────────────────────
+# File is stored in the plugin data folder as 'trickytpa'.
+h2:
+  filename: trickytpa
+  # Optional: append ;MODE=MySQL for MySQL-compatible SQL mode
+  options: ""
+
+# ─── MySQL ────────────────────────────────────────────────────────────────────
+mysql:
+  host: localhost
+  port: 3306
+  database: trickytpa
+  username: root
+  password: ""
+  useSSL: false
+  pool_size: 10
+  connection_timeout: 5000
+  table_prefix: "trickytpa_"
