@@ -3,7 +3,7 @@ plugins {
     id 'com.gradleup.shadow' version '8.3.0'
 }
 
-group = 'net.trickycreations'
+group = 'net.devamy'
 version = '0.1'
 
 repositories {
@@ -30,27 +30,22 @@ dependencies {
 }
 
 shadowJar {
-    relocate 'co.aikar.commands', 'net.trickycreations.trickytpa.libs.acf'
-    relocate 'co.aikar.locales', 'net.trickycreations.trickytpa.libs.locales'
-    relocate 'dev.triumphteam.gui', 'net.trickycreations.trickytpa.libs.gui'
-    relocate 'com.zaxxer.hikari', 'net.trickycreations.trickytpa.libs.hikari'
-    relocate 'org.h2', 'net.trickycreations.trickytpa.libs.h2'
-    relocate 'com.mysql', 'net.trickycreations.trickytpa.libs.mysql'
-    relocate 'org.sqlite', 'net.trickycreations.trickytpa.libs.sqlite'
-    relocate 'org.slf4j', 'net.trickycreations.trickytpa.libs.slf4j'
-    archiveFileName = "TrickyTPA.jar"
+    relocate 'co.aikar.commands', 'net.devamy.dtpa.libs.acf'
+    relocate 'co.aikar.locales', 'net.devamy.dtpa.libs.locales'
+    relocate 'dev.triumphteam.gui', 'net.devamy.dtpa.libs.gui'
+    relocate 'com.zaxxer.hikari', 'net.devamy.dtpa.libs.hikari'
+    relocate 'org.h2', 'net.devamy.dtpa.libs.h2'
+    relocate 'com.mysql', 'net.devamy.dtpa.libs.mysql'
+    relocate 'org.sqlite', 'net.devamy.dtpa.libs.sqlite'
+    relocate 'org.slf4j', 'net.devamy.dtpa.libs.slf4j'
+    archiveFileName = "DTPA.jar"
 }
 
 build.dependsOn shadowJar
 
 def targetJavaVersion = 21
 java {
-    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-    }
+    toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
 }
 
 tasks.withType(JavaCompile).configureEach {

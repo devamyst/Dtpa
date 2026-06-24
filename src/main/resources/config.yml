@@ -13,48 +13,28 @@ settings:
     action_bar: true
     title: true
   format:
-    tpa: "TPA"
-    tpa_here: "TPAHere"
-
-  # ─── Cooldown ──────────────────────────────────────────────────────────────
+    tpa: "DTPA"
+    tpa_here: "DTPAHere"
   cooldown:
     enabled: true
-    # Cooldown in seconds before a player can send another request after
-    # their previous one is accepted, denied, or expires
     seconds: 10
-    # Whether the cooldown applies per-target (true) or globally (false)
     per_target: true
-    bypass_permission: "trickytpa.bypass.cooldown"
-
-  # ─── World Blacklist ───────────────────────────────────────────────────────
+    bypass_permission: "dtpa.bypass.cooldown"
   world_blacklist:
     enabled: false
-    # Players in these worlds cannot SEND or RECEIVE TPA requests
     worlds: []
-    bypass_permission: "trickytpa.bypass.world"
-
-  # ─── Max Requests ──────────────────────────────────────────────────────────
+    bypass_permission: "dtpa.bypass.world"
   max_requests:
     enabled: true
-    # Max pending outgoing requests a player can have at once
     per_player: 5
-    bypass_permission: "trickytpa.bypass.maxrequests"
-
-  # ─── Distance Limit ────────────────────────────────────────────────────────
+    bypass_permission: "dtpa.bypass.maxrequests"
   distance_limit:
     enabled: false
-    # Maximum distance (in blocks) between sender and receiver for TPA
-    # Only checked for TPA (not TPAHere, since the sender comes to the receiver)
     max_blocks: 1000
-    bypass_permission: "trickytpa.bypass.distance"
-
-  # ─── Damage Cancel ─────────────────────────────────────────────────────────
+    bypass_permission: "dtpa.bypass.distance"
   damage_cancel:
     enabled: true
-    # Taking any damage cancels the teleport countdown
     notify: true
-
-  # ─── ActionBar Task ────────────────────────────────────────────────────────
   actionbar:
     interval_ticks: 20
 
@@ -64,14 +44,14 @@ messages:
   usage_tpa: "&cUsage: /tpa <player>"
   usage_tpahere: "&cUsage: /tpahere <player>"
   cant_tpa_yourself: "&cYou can't send a request to yourself."
-  no_requests: "&cYou have no pending TPA requests from that player."
+  no_requests: "&cYou have no pending DTPA requests from that player."
   request_sent: "&aYou sent a &e{type} &arequest to &e{receiver}&a!"
   request_received: "&e{sender} &ahas sent you a &e{type} &arequest!"
   receiver_accept: "&aYou accepted the &e{type} &arequest!"
   sender_notify_accept: "&aYour &e{type} &arequest was accepted!"
   receiver_refuse: "&cYou denied the &e{type} &crequest."
   sender_notify_refuse: "&cYour &e{type} &crequest was denied."
-  tpauto-actionbar: "&bTPAuto &7is active"
+  tpauto-actionbar: "&bDTPAAuto &7is active"
   teleport:
     messages:
       cancelled: "&cTeleportation cancelled — you moved!"
@@ -90,40 +70,40 @@ messages:
       success_title: "&aTeleported!"
       success_sub_title: ""
   cooldown:
-    active: "&cYou must wait &e{time}s &cbefore sending another TPA request."
+    active: "&cYou must wait &e{time}s &cbefore sending another DTPA request."
   world_blacklist:
-    sender_blocked: "&cYou cannot send TPA requests from this world."
-    receiver_blocked: "&cThat player is in a world where TPA requests are disabled."
-    both_blocked: "&cTPA is disabled in your current world."
+    sender_blocked: "&cYou cannot send DTPA requests from this world."
+    receiver_blocked: "&cThat player is in a world where DTPA requests are disabled."
+    both_blocked: "&cDTPA is disabled in your current world."
   max_requests:
-    reached: "&cYou have reached the maximum number of pending TPA requests (&e{max}&c)."
+    reached: "&cYou have reached the maximum number of pending DTPA requests (&e{max}&c)."
   distance:
     too_far: "&cThat player is too far away (&e{distance}&c blocks, max &e{max}&c)."
   admin:
     no_permission: "&cYou don't have permission to use this command."
-    clear_all: "&aCleared &e{count} &apending TPA requests."
+    clear_all: "&aCleared &e{count} &apending DTPA requests."
     reload: "&aConfiguration reloaded."
     player_not_found: "&cPlayer not found online."
-    request_not_found: "&cNo TPA request found between &e{sender} &cand &e{receiver}&c."
-    removed_request: "&aRemoved TPA request from &e{sender} &ato &e{receiver}&a."
-    info_header: "&8=== &6TPA Info: &e{player} &8==="
-    info_tpa_disabled: "&7  TPA Disabled: &e{value}"
-    info_tpahere_disabled: "&7  TPAHere Disabled: &e{value}"
+    request_not_found: "&cNo DTPA request found between &e{sender} &cand &e{receiver}&c."
+    removed_request: "&aRemoved DTPA request from &e{sender} &ato &e{receiver}&a."
+    info_header: "&8=== &6DTPA Info: &e{player} &8==="
+    info_tpa_disabled: "&7  DTPA Disabled: &e{value}"
+    info_tpahere_disabled: "&7  DTPAHere Disabled: &e{value}"
     info_auto_accept: "&7  Auto-Accept: &e{value}"
     info_confirm_disabled: "&7  Confirm GUI Disabled: &e{value}"
     info_pending_outgoing: "&7  Pending Outgoing: &e{count}"
     info_pending_incoming: "&7  Pending Incoming: &e{count}"
   list:
-    no_pending: "&cYou have no pending TPA requests."
-    header: "&8=== &6Your Pending TPA Requests &8==="
+    no_pending: "&cYou have no pending DTPA requests."
+    header: "&8=== &6Your Pending DTPA Requests &8==="
     entry: "&7  &e#{index} &8- &7To: &e{target} &8(&7{type}&8)"
-    admin_header: "&8=== &6Pending TPA Requests for &e{player} &8==="
+    admin_header: "&8=== &6Pending DTPA Requests for &e{player} &8==="
     admin_entry: "&7  &e#{index} &8- &e{sender} &7-> &e{receiver} &8(&7{type}&8)"
   blocklist:
     already_blocked: "&cYou have already blocked &e{player}&c."
     not_blocked: "&cYou have not blocked &e{player}&c."
-    blocked: "&aBlocked &e{player}&a. They can no longer send you TPA requests."
-    unblocked: "&aUnblocked &e{player}&a. They can now send you TPA requests."
+    blocked: "&aBlocked &e{player}&a. They can no longer send you DTPA requests."
+    unblocked: "&aUnblocked &e{player}&a. They can now send you DTPA requests."
     blocked_attempt: "&cYou have been blocked by &e{player}&c."
     list_header: "&8=== &6Your Blocked Players &8==="
     list_entry: "&7  &e{player}"
@@ -131,7 +111,7 @@ messages:
 
 guis:
   sent_confirm:
-    title: "&8Confirm TPA Request"
+    title: "&8Confirm DTPA Request"
     rows: 3
     info:
       slot: 13
@@ -151,7 +131,7 @@ guis:
       lore: ["", "&7Click to cancel."]
       glow: false
   accept_request:
-    title: "&8Incoming TPA Request"
+    title: "&8Incoming DTPA Request"
     rows: 3
     info:
       slot: 13

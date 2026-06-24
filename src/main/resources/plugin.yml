@@ -1,6 +1,6 @@
-name: TrickyTPA
+name: DTPA
 version: '${version}'
-main: net.trickycreations.trickytpa.TrickyTPA
+main: net.devamy.dtpa.DTPA
 api-version: '1.21'
 folia-supported: true
 
@@ -8,72 +8,72 @@ commands:
   tpa:
     description: Send a TPA request to a player
     usage: /tpa <player>
-    permission: trickytpa.command.tpa
+    permission: dtpa.command.tpa
   tpahere:
     description: Send a TPAHere request to a player
     usage: /tpahere <player>
-    permission: trickytpa.command.tpahere
+    permission: dtpa.command.tpahere
   tpaccept:
     description: Accept a TPA request
     usage: /tpaccept <player>
-    permission: trickytpa.command.tpaccept
+    permission: dtpa.command.tpaccept
   tpadeny:
     description: Deny a TPA request
     usage: /tpadeny <player>
     aliases: [tpacancel]
-    permission: trickytpa.command.tpadeny
+    permission: dtpa.command.tpadeny
   tpatoggle:
     description: Toggle receiving TPA requests
     usage: /tpatoggle
-    permission: trickytpa.command.tpatoggle
+    permission: dtpa.command.tpatoggle
   tpaheretoggle:
     description: Toggle receiving TPAHere requests
     usage: /tpaheretoggle
-    permission: trickytpa.command.tpaheretoggle
+    permission: dtpa.command.tpaheretoggle
   tpauto:
     description: Toggle auto-accepting all TPA requests
     usage: /tpauto
-    permission: trickytpa.command.tpauto
+    permission: dtpa.command.tpauto
   tpatoggleconfirm:
     description: Toggle the confirm GUI on/off
     usage: /tpatoggleconfirm
-    permission: trickytpa.command.tpatoggleconfirm
+    permission: dtpa.command.tpatoggleconfirm
   tpcancel:
     description: Cancel your own outgoing pending TPA request
     usage: /tpcancel
-    permission: trickytpa.command.tpcancel
+    permission: dtpa.command.tpcancel
   tpareload:
     description: Reload the plugin config
     usage: /tpareload
-    permission: trickytpa.command.tpareload
+    permission: dtpa.command.tpareload
   tpalist:
     description: List your pending TPA requests
     usage: /tpalist [player]
-    permission: trickytpa.command.tpalist
+    permission: dtpa.command.tpalist
   tpablacklist:
     description: Block a player from sending you TPA requests
     usage: /tpablacklist <player>
-    permission: trickytpa.command.tpablacklist
+    permission: dtpa.command.tpablacklist
   tpaadmin:
     description: Admin commands for TPA management
     usage: /tpaadmin <clear|reload|info|remove>
-    permission: trickytpa.command.tpaadmin
+    permission: dtpa.command.tpaadmin
 
 permissions:
-  trickytpa.command.tpa:                { default: true }
-  trickytpa.command.tpahere:            { default: true }
-  trickytpa.command.tpaccept:           { default: true }
-  trickytpa.command.tpadeny:            { default: true }
-  trickytpa.command.tpatoggle:          { default: true }
-  trickytpa.command.tpaheretoggle:      { default: true }
-  trickytpa.command.tpauto:             { default: true }
-  trickytpa.command.tpatoggleconfirm:   { default: true }
-  trickytpa.command.tpcancel:           { default: true }
-  trickytpa.command.tpareload:          { default: op }
-  trickytpa.command.tpalist:            { default: true }
-  trickytpa.command.tpablacklist:       { default: true }
-  trickytpa.command.tpaadmin:           { default: op }
-  trickytpa.bypass.cooldown:            { default: op }
-  trickytpa.bypass.world:               { default: op }
-  trickytpa.bypass.maxrequests:         { default: op }
-  trickytpa.bypass.distance:            { default: op }
+  dtpa.command.tpa:                { default: true }
+  dtpa.command.tpahere:            { default: true }
+  dtpa.command.tpaccept:           { default: true }
+  dtpa.command.tpadeny:            { default: true }
+  dtpa.command.tpatoggle:          { default: true }
+  dtpa.command.tpaheretoggle:      { default: true }
+  dtpa.command.tpauto:             { default: true }
+  dtpa.command.tpatoggleconfirm:   { default: true }
+  dtpa.command.tpcancel:           { default: true }
+  dtpa.command.tpareload:          { default: op }
+  dtpa.command.tpalist:            { default: true }
+  dtpa.command.tpablacklist:       { default: true }
+  dtpa.command.tpaadmin:           { default: op }
+  dtpa.bypass.cooldown:            { default: op }
+  dtpa.bypass.world:               { default: op }
+  dtpa.bypass.maxrequests:         { default: op }
+  dtpa.bypass.distance:            { default: op }

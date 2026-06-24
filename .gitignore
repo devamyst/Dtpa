@@ -1,7 +1,9 @@
+# Gradle
 .gradle/
 build/
-*.class
-*.log
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
 .idea/
 *.iml
 out/
@@ -9,5 +11,27 @@ out/
 .project
 .settings/
 bin/
-build/libs/*.jar
+.vscode/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Java
+*.class
+*.jar
 !gradle/wrapper/gradle-wrapper.jar
+*.war
+*.nar
+*.ear
+*.log
+*.tar.gz
+*.zip
+
+# Environment
+.env
+local.properties

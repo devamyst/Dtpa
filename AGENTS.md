@@ -1,4 +1,4 @@
-# TrickyTPA
+# DTPA
 
 Paper 1.21+/Folia plugin — teleport requests with GUI confirm/accept, countdown, movement cancel, and much more.
 
@@ -8,7 +8,7 @@ Paper 1.21+/Folia plugin — teleport requests with GUI confirm/accept, countdow
 JAVA_HOME=/usr/lib/jvm/zulu-21-amd64 ./gradlew build
 ```
 
-Output: `build/libs/TrickyTPA.jar` (shadowJar relocates ACF + Triumph GUI into `net.trickycreations.trickytpa.libs.*`)
+Output: `build/libs/DTPA.jar` (shadowJar relocates ACF + Triumph GUI into `net.devamy.dtpa.libs.*`)
 
 Java 21, Gradle 8.8. **Java 26+ will not work with Gradle 8.8** — set `JAVA_HOME` to a Java 21 JDK.
 
@@ -16,7 +16,7 @@ Java 21, Gradle 8.8. **Java 26+ will not work with Gradle 8.8** — set `JAVA_HO
 
 | Path | Role |
 |---|---|
-| `TrickyTPA.java` | Main class — saves default config, creates `TpaManager`, registers ACF commands + listener, starts Folia-compatible `TpaActionBarTask` via `GlobalRegionScheduler` |
+| `DTPA.java` | Main class — saves default config, creates `TpaManager`, registers ACF commands + listener, starts Folia-compatible `TpaActionBarTask` via `GlobalRegionScheduler` |
 | `commands/tpa/` | ACF `BaseCommand` subclasses |
 | `tpa/struct/TpaManager.java` | All mutable state in-memory — `ConcurrentMap<String,TpaRequest>` keyed `senderUUID:receiverUUID`, plus 4 `ConcurrentHashSet<UUID>` for toggles, cooldown map, blocklist map, expiration `ScheduledTask` tracking |
 | `tpa/model/TpaRequest.java` | Simple POCO — sender, receiver, type (TPA / TPA_HERE) |
@@ -46,10 +46,10 @@ Java 21, Gradle 8.8. **Java 26+ will not work with Gradle 8.8** — set `JAVA_HO
 
 | Feature | Config path | Description |
 |---|---|---|
-| **Cooldown** | `settings.cooldown.*` | Configurable per-target or global cooldown between requests; bypassable with `trickytpa.bypass.cooldown` |
-| **World blacklist** | `settings.world_blacklist.*` | Block TPA in/from certain worlds; bypassable with `trickytpa.bypass.world` |
-| **Max requests** | `settings.max_requests.*` | Limit outgoing pending requests per player; bypassable with `trickytpa.bypass.maxrequests` |
-| **Distance limit** | `settings.distance_limit.*` | Max allowed distance for TPA (not TPAHere); bypassable with `trickytpa.bypass.distance` |
+| **Cooldown** | `settings.cooldown.*` | Configurable per-target or global cooldown between requests; bypassable with `dtpa.bypass.cooldown` |
+| **World blacklist** | `settings.world_blacklist.*` | Block TPA in/from certain worlds; bypassable with `dtpa.bypass.world` |
+| **Max requests** | `settings.max_requests.*` | Limit outgoing pending requests per player; bypassable with `dtpa.bypass.maxrequests` |
+| **Distance limit** | `settings.distance_limit.*` | Max allowed distance for TPA (not TPAHere); bypassable with `dtpa.bypass.distance` |
 | **Damage cancel** | `settings.damage_cancel.*` | Taking damage cancels the teleport countdown |
 | **Blocklist** | `/tpablacklist <player>` | Block specific players from sending you requests |
 | **TPA list** | `/tpalist [player]` | View your pending outgoing/incoming requests (admins can view others') |
@@ -62,13 +62,13 @@ Java 21, Gradle 8.8. **Java 26+ will not work with Gradle 8.8** — set `JAVA_HO
 - **Messages are fully config-driven** — every user-facing string lives in `config.yml` and is referenced through the `Messages` enum. Never hardcode display strings.
 - **ACF command completions** use `@CommandCompletion("@players")` for player-name tab-completion.
 - **GUIs** use Triumph GUI builder; items sourced from `XMaterial` (cross-version material matching); player heads from `SkullCreator`.
-- **Lombok** throughout: `@Getter`, `@Setter`, `@RequiredArgsConstructor`, `@AllArgsConstructor`, `@UtilityClass`. The main plugin instance is `@Getter private static TrickyTPA instance`.
+- **Lombok** throughout: `@Getter`, `@Setter`, `@RequiredArgsConstructor`, `@AllArgsConstructor`, `@UtilityClass`. The main plugin instance is `@Getter private static DTPA instance`.
 
 ## Database
 
 | Backend | Tables | RAM cache | Connection |
 |---|---|---|---|
-| **MySQL** | `trickytpa_tpa_requests`, `player_toggles`, `cooldowns`, `blocklist`, `audit_log` | Active `tpa_requests` cached in `ConcurrentHashMap` | HikariCP pool |
+| **MySQL** | `dtpa_tpa_requests`, `player_toggles`, `cooldowns`, `blocklist`, `audit_log` | Active `tpa_requests` cached in `ConcurrentHashMap` | HikariCP pool |
 | **H2** | Same tables (SQL compat mode) | None | Single synchronized `Connection` |
 | **SQLite** | Same tables | None | Single synchronized `Connection` |
 
