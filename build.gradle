@@ -23,17 +23,17 @@ dependencies {
     implementation 'co.aikar:acf-paper:0.5.1-SNAPSHOT'
 
     // ─── Database drivers ──────────────────────────────────────────────
-    compileOnly 'com.zaxxer:HikariCP:5.1.0'
-    compileOnly 'com.h2database:h2:2.2.224'
-    compileOnly 'com.mysql:mysql-connector-j:8.2.0'
-    compileOnly 'org.xerial:sqlite-jdbc:3.45.1.0'
+    implementation 'com.zaxxer:HikariCP:5.1.0'                        // directly imported by MySQLStorage
+    compileOnly 'com.h2database:h2:2.2.224'                           // loaded at runtime via DriverManager
+    compileOnly 'com.mysql:mysql-connector-j:8.2.0'                   // loaded at runtime via DriverManager
+    compileOnly 'org.xerial:sqlite-jdbc:3.45.1.0'                     // loaded at runtime via DriverManager
 }
 
 shadowJar {
     relocate 'co.aikar.commands', 'net.devamy.dtpa.libs.acf'
     relocate 'co.aikar.locales', 'net.devamy.dtpa.libs.locales'
     relocate 'dev.triumphteam.gui', 'net.devamy.dtpa.libs.gui'
-    // Database drivers + SLF4J are downloaded at runtime by LibraryLoader
+    // HikariCP (159 KB) is shaded; H2, MySQL, SQLite loaded at runtime via LibraryLoader
     archiveFileName = "DTPA.jar"
 }
 

@@ -31,9 +31,9 @@ public final class DTPA extends JavaPlugin {
         // Migrate config.yml — adds missing keys from jar defaults
         new ConfigMigrator(this).migrate();
 
-        // Load DB drivers from plugins/DTPA/libs/ (download from Maven Central if missing)
+        // Load JDBC drivers (H2, MySQL, SQLite) from plugins/DTPA/libs/
         try {
-            new LibraryLoader(getDataFolder(), getClass().getClassLoader(), getLogger()).load();
+            new LibraryLoader(getDataFolder(), getLogger()).load();
         } catch (Exception e) {
             getLogger().severe("Failed to load database libraries: " + e.getMessage());
             getServer().getPluginManager().disablePlugin(this);
